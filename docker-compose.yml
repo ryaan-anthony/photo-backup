@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  worker:
+    build:
+      context: .
+    env_file: .env
+    restart: always
+    volumes:
+      - ./event.log:/var/www/current/event.log
+      - ./last_run.txt:/var/www/current/last_run.txt
+    command:
+      - /bin/bash
+      - -c
+      - |
+        bundle exec lib/photo_backup.rb
