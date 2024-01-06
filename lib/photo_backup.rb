@@ -8,6 +8,8 @@ loop do
   App.logger.info 'Starting...'
   start = Time.now
   access_token = Google::AccessToken.new.refresh
+  raise 'Invalid access_token' if access_token.nil?
+
   photos_client = Google::Photos.new(access_token)
   storage = Google::Cloud::Storage.new
 
