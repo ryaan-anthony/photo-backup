@@ -11,11 +11,11 @@ module Google
     private
 
     def client
-      Faraday.new(url: 'https://oauth2.googleapis.com')
+      Faraday.new(url: 'https://www.googleapis.com')
     end
 
     def response
-      process client.post('token', request.body)
+      process client.post('oauth2/v3/token', request.body)
     end
 
     def process(response)
