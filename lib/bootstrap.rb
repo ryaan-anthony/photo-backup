@@ -11,6 +11,10 @@ require 'google/requests/refresh_token'
 require 'google/access_token'
 require 'google/photos'
 require 'services/list_photos'
+require 'sentry-ruby'
+Sentry.init do |config|
+  config.dsn = ENV.fetch('SENTRY_DSN')
+end
 
 class BreakLoop < StandardError; end
 class App

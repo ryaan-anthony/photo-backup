@@ -36,6 +36,7 @@ loop do
     rescue StandardError => e
       App.logger.debug "Asset Exception #{photo['filename']}"
       App.logger.error e.message
+      Sentry.capture_exception(e)
     end
   end
 
@@ -45,6 +46,7 @@ rescue BreakLoop => e
 rescue StandardError => e
   App.logger.debug 'Application Exception'
   App.logger.error e.message
+  Sentry.capture_exception(e)
 
 ensure
   next_run = TIME_REMAINING.call(start)
